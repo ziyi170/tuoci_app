@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Safe area support for iOS PWA ── */
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+}
+
+html, body, #root {
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #27272f; border-radius: 2px; }
+
+/* ── Tap highlight removal ── */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* ── Screen animation ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.fade-up { animation: fadeUp 0.3s ease forwards; }
+
+/* ── Card flip animation ── */
+@keyframes flashGreen {
+  0%, 100% { background: #18181d; }
+  50%       { background: rgba(168,224,99,0.08); }
+}
+@keyframes flashRed {
+  0%, 100% { background: #18181d; }
+  50%       { background: rgba(224,99,99,0.08); }
+}
+.flash-correct { animation: flashGreen 0.4s ease; }
+.flash-wrong   { animation: flashRed   0.4s ease; }
+
+/* ── Pulsing dot ── */
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.65); }
+}
+.dot-pulse { animation: dotPulse 2s ease-in-out infinite; }
+
+/* ── Background orbs ── */
+@keyframes drift {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(40px,30px) scale(1.08); }
+}
+.orb { animation: drift 16s ease-in-out infinite alternate; }
+.orb-b { animation-delay: -8s; }
+
+/* ── Reveal animation ── */
+@keyframes revealIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+.reveal-in { animation: revealIn 0.28s ease forwards; }
